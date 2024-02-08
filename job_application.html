@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APPLY FOR A JOB </title>
+   <link rel="stylesheet" href="job_application.css">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.rtl.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+
+
+   <style>
+    *,*:after,*:before{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    margin: 0;
+    background: #003046;
+    color: #fff;
+    display: flex;
+    
+}  
+
+.form-container{
+    width: 600px;
+    padding: 30px;
+    background: #fff;
+    color: #000;
+    border-radius: 15px;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+}
+
+input{
+    width: 100%;
+    padding: 10px 20px;
+    height: 50px;
+    line-height: 30px;
+    font-size: 18px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.backhome{
+  
+    display: flex;
+}  
+
+   </style>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.rtl.min.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    
+</head>
+<body>
+
+    
+
+    <div class="form-container">
+        <div id="message"></div>
+        <form action="" id="input-form" method="POST">
+            <center>
+               <h1><strong>APPLY FOR A JOB</strong></h1>
+            </center>
+           
+          <input type="text" name="name" id="" placeholder="Full Names">
+          <input type="text" name="idNum" id="" placeholder="National ID No">
+          <input type="text" name="email" id="" placeholder="Email">
+          <input type="text" name="phone" id="" placeholder="Phone Number">
+          <input type="text" name="gender" id="" placeholder="Gender">
+          <input type="button" value="Apply" onclick="submitForm()" name="save_application" class="btn btn-success" id="submit">
+
+        </form>
+    </div>  
+
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      
+
+    <center>
+        <div class="backhome">
+
+            <a href="./OfficialWebsite.php" class="btn btn-info">Back To Home</a>
+
+        </div>
+    </center>
+    
+    <script>
+
+        function submitForm() {
+            
+            var name =$('input[name=name]').val();
+            var idNum =$('input[name=idNum]').val();          
+            var email =$('input[name=email]').val();
+            var phone  =$('input[name=phone]').val();
+            var gender =$('input[name=gender]').val();
+            var formData = {name: name, idNum: idNum, email: email, phone: phone, gender: gender};
+
+            if (name != '' && idNum != '' && email != '' && phone != '' && gender != '' ) {
+                
+                var formData = {name: name, idNum: idNum, email: email, phone: phone, gender: gender};
+
+                $('#message').html('<span style = "color:blue">Proccessing Application..... Please wait....</span>');
+
+                $.ajax({
+                url: "/COMPANY%20HUMAN%20RESOURCE%20MANAGEMENT%20PROJECT/subserver.php",
+                type: 'POST',
+                data: formData,
+
+                success: function (response) {
+
+                    var res = JSON.parse(response);
+                    console.log(res);
+                    if(res.success == true)
+                    $('#message').html('<span style = "color:green">Your Application sent successfully</span>');
+                     else
+                     $('#message').html('<span style = "color:red">Some  Erros Caught in sending your application Try again later</span>');
+                }
+
+            });
+           
+
+            }else{
+
+                $('#message').html('<span style = "color:red">Please FIll Out All Fields</span>');
+            }
+
+           
+  
+        }
+
+    </script>
+
+
+</body>
+</html>

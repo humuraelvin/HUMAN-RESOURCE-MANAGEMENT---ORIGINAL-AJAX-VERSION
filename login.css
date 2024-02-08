@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+.form_deg{
+    padding-top: 300px;
+}
+
+.label_deg{
+    display: inline-block;
+    color: skyblue;
+    width: 100px;
+    text-align: right;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+input{
+    border-radius: 20px;
+    height: 50px;
+    padding: 20x;
+}
+
+.body_deg{
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
